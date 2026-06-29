@@ -94,6 +94,33 @@ http://127.0.0.1:8000/
 
 *(Screenshots will be added soon.)*
 
+### 🏠 Login Page
+
+![Login Page](screenshots/login_page.png)
+
+---
+
+### 👤 Owner Dashboard
+
+![Owner Dashboard](screenshots/owner_page.png)
+
+---
+
+### 🏡 Tenant Dashboard
+
+![Tenant Dashboard](screenshots/tenant_page.png)
+
+---
+
+### 📄 Property Details
+
+![Property Details](screenshots/property_details.png)
+
+---
+
+### 📞 Contact Owner
+
+![Contact Owner](screenshots/contact_owner.png)
 ---
 
 ## 👩‍💻 Author
