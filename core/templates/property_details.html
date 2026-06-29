@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>{{ property.title }}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="card shadow p-5">
+
+        <h1>{{ property.title }}</h1>
+
+        <hr>
+
+        <h5>📍 {{ property.city }}</h5>
+
+        <h5>💰 ₹{{ property.rent }}/month</h5>
+
+        <h5>🛏 {{ property.bedrooms }} Bedrooms</h5>
+
+        <h5>🚿 {{ property.bathrooms }} Bathrooms</h5>
+        <h5>Owner: {{ property.owner.first_name }}</h5>
+
+        <p class="mt-4">
+            {{ property.description }}
+        </p>
+        <div class="mt-4">
+
+    <a href="{% url 'contact_owner' property.id %}"
+       class="btn btn-success btn-lg">
+
+        Contact Owner
+
+    </a>
+
+</div>
+        {% if property.image %}
+       <img
+        src="{{ property.image.url }}"
+        class="img-fluid rounded mb-4"
+        alt="{{ property.title }}">
+       {% endif %}
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Owner Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+     <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+
+      <div class="container">
+
+        <a class="navbar-brand fw-bold fs-3" href="#">
+            Home<span class="text-primary">Haven</span>
+        </a>
+
+        <div class="ms-auto d-flex align-items-center">
+
+            <span class="me-4 fw-semibold">
+                Welcome, {{ request.user.first_name }}
+            </span>
+
+            <a href="{% url 'logout' %}" class="btn btn-outline-danger">
+                Logout
+            </a>
+
+        </div>
+
+      </div>
+
+   </nav>
+     <div class="container mt-5">
+
+      <div class="bg-white rounded-4 shadow-sm p-5">
+
+        <h2 class="fw-bold">
+            Welcome Back, {{ request.user.first_name }} 👋
+        </h2>
+
+        <p class="text-secondary fs-5 mt-3">
+            Manage your properties, view tenant inquiries,
+            and grow your rental business with HomeHaven.
+        </p>
+
+        <a href="{% url 'add_property' %}" class="btn btn-primary btn-lg mt-3">
+            + Add Property
+        </a>
+
+    </div>
+
+   </div>
+   <div class="container mt-4">
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm border-0 rounded-4 p-4">
+
+                <h5>Total Properties</h5>
+
+                <h2 class="fw-bold text-primary">{{ total_properties }}</h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm border-0 rounded-4 p-4">
+
+                <h5>Total Views</h5>
+
+                <h2 class="fw-bold text-success"> {{ total_views }}</h2>
+
+            </div>
+
+        </div>
+      <div class="col-md-4">
+
+    <a href="{% url 'interested_tenants' %}"
+       class="text-decoration-none text-dark">
+
+        <div class="card shadow-sm border-0 rounded-4 p-4">
+
+            <h5>Interested Tenants</h5>
+
+            <h2 class="fw-bold text-danger">
+                {{ interested_tenants_count }}
+            </h2>
+
+        </div>
+
+    </a>
+
+</div>
+
+    </div>
+
+</div>
+  <div class="container mt-5">
+    <h3 class="mb-4">My Properties</h3>
+
+{% for property in properties %}
+
+<div class="card shadow-sm mb-4">
+
+
+    <div class="card-body">
+
+        <h3>{{ property.title }}</h3>
+
+        <p>📍 {{ property.city }}</p>
+
+        <p>💰 ₹{{ property.rent }}/month</p>
+
+        <p>
+            🛏 {{ property.bedrooms }} Bedrooms |
+            🚿 {{ property.bathrooms }} Bathrooms
+        </p>
+        <p>
+    <strong>Status:</strong>
+
+    {% if property.status == "Available" %}
+        <span class="badge bg-success">Available</span>
+    {% else %}
+        <span class="badge bg-danger">Occupied</span>
+    {% endif %}
+</p>
+
+
+        <p class="text-muted">
+            {{ property.description }}
+        </p>
+
+        <div class="d-flex gap-2">
+
+            <a href="{% url 'edit_property' property.id %}"
+               class="btn btn-warning">
+                Edit
+            </a>
+
+            <a href="{% url 'delete_property' property.id %}"
+               class="btn btn-danger">
+                Delete
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<p>No properties added yet.</p>
+
+{% endfor %}
+     </div>
+
+</div>
+</div>
+</body>
+
+</html>
